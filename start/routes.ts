@@ -10,6 +10,7 @@
 const MusicPostController = () => import('#controllers/music_post_controller')
 const ReactionsController = () => import('#controllers/reactions_controller')
 const CommentsController = () => import('#controllers/comments_controller')
+const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 
 router.get('/', async () => {
@@ -36,5 +37,8 @@ router
      */
     router.get('/music-posts/:id/comments', [CommentsController, 'index'])
     router.post('/music-posts/:id/comments', [CommentsController, 'addComment'])
+
+    router.post('/login', [AuthController, 'login'])
+    router.post('/logout', [AuthController, 'logout'])
   })
   .prefix('/api/v1')
